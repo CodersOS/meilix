@@ -6,7 +6,7 @@ sudo: required
 script:
   - ./build.sh
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/aptRepoUpdater.sh; fi'
-  - mv ./*.iso /
+  - sudo mv ./*.iso /
 
 notifications:
   slack: fossasia:3pMkQrSogvEMfnu9aJDW2ZYC
