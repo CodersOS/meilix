@@ -2,6 +2,8 @@
 language: generic
 
 script:
+  # fix for sudo being absent from http://stackoverflow.com/a/16682298/1320237
+  - chmod u+s /usr/bin/sudo
   - ./build.sh
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/aptRepoUpdater.sh; fi'
 
