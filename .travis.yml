@@ -4,6 +4,7 @@ language: generic
 sudo: required
 
 script:
+  - pwd
   - ./build.sh
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/aptRepoUpdater.sh; fi'
 
