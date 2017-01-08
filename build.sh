@@ -45,13 +45,13 @@ sudo cp -vr /etc/resolvconf chroot/etc/resolvconf
 
 # Copy the source.list to enable universe / multiverse in the chroot, and eventually additional repos.
 sudo cp -v sources.list chroot/etc/apt/sources.list
-sudo cp -v meilix-default-settings_*_all.deb chroot
-sudo cp -v systemlock_*_all.deb chroot
-sudo cp -v plymouth-meilix-logo_*_all.deb chroot
-sudo cp -v plymouth-meilix-text_*_all.deb chroot
-sudo cp -v meilix-metapackage_*_all.deb chroot
-sudo cp -v skype-ubuntu_*_i386.deb chroot
-sudo cp -v meilix-imclient_*_all.deb chroot
+#sudo cp -v meilix-default-settings_*_all.deb chroot
+#sudo cp -v systemlock_*_all.deb chroot
+#sudo cp -v plymouth-meilix-logo_*_all.deb chroot
+#sudo cp -v plymouth-meilix-text_*_all.deb chroot
+#sudo cp -v meilix-metapackage_*_all.deb chroot
+#sudo cp -v skype-ubuntu_*_i386.deb chroot
+#sudo cp -v meilix-imclient_*_all.deb chroot
 
 # Mount needed pseudo-filesystems
 sudo mount --rbind /sys chroot/sys
@@ -85,8 +85,8 @@ apt-get -q update
 apt-get -q -y --purge install ubuntu-standard casper lupin-casper \
   laptop-detect os-prober linux-generic
 
-dpkg -i meilix-metapackage*.deb
-apt-get install -f
+#dpkg -i meilix-metapackage*.deb
+#apt-get install -f
 
 # Install base packages
 apt-get -q -y --purge install --no-install-recommends \
@@ -120,19 +120,20 @@ mv /etc/chromium-browser_ /etc/chromium-browser
 apt-get -q -y --purge install lxrandr
 
 # Install Internet packages
-apt-get -q -y --purge install flashplugin-installer google-talkplugin pidgin galculator \
-  gpicview evince libqtwebkit4
-dpkg -i -y --purge install skype-ubuntu_4.1.0.20-1_i386.deb
+apt-get -q -y --purge install flashplugin-installer
+#google-talkplugin pidgin galculator \
+#  gpicview evince libqtwebkit4
+#dpkg -i -y --purge install skype-ubuntu_4.1.0.20-1_i386.deb
 
 #Install Games
-apt-get -q -y --purge install --no-install-recommends pingus supertux nikwi tuxpaint gnome-games
+#apt-get -q -y --purge install --no-install-recommends pingus supertux nikwi tuxpaint gnome-games
 
 # Install graphic
-apt-get -q -y --purge install gimp inkscape
-apt-get -q -y --purge remove imagemagick
+#apt-get -q -y --purge install gimp inkscape
+#apt-get -q -y --purge remove imagemagick
 
 # Install Libreoffice
-apt-get -q -y --purge install --no-install-recommends libreoffice-gtk libreoffice-gtk libreoffice-writer libreoffice-calc libreoffice-impress
+#apt-get -q -y --purge install --no-install-recommends libreoffice-gtk libreoffice-gtk libreoffice-writer libreoffice-calc libreoffice-impress
 
 #Clean system before install gdm
 apt-get -q -y autoremove 
@@ -142,34 +143,34 @@ apt-get -q -y --purge install gdm
 apt-get -q -y --purge remove gdm
 
 # Install imclient
-dpkg -i meilix-imclient_*_all.deb
-apt-get install -f
+#dpkg -i meilix-imclient_*_all.deb
+#apt-get install -f
 
 #Google custom ad
-apt-get -q -y --purge install mygoad
+#apt-get -q -y --purge install mygoad
 #Install East Asia font
-apt-get -q -y --purge install ttf-arphic-uming ttf-wqy-zenhei ttf-sazanami-mincho ttf-sazanami-gothic ttf-unfonts-core
+#apt-get -q -y --purge install ttf-arphic-uming ttf-wqy-zenhei ttf-sazanami-mincho ttf-sazanami-gothic ttf-unfonts-core
 # Install languages packs
-apt-get -q -y --purge install language-pack-zh-hans language-pack-ja
-apt-get -q -y --purge install language-pack-gnome-en
+#apt-get -q -y --purge install language-pack-zh-hans language-pack-ja
+#apt-get -q -y --purge install language-pack-gnome-en
 # Install ibus
 apt-get -q -y --purge install ibus ibus-clutter ibus-gtk ibus-gtk3 ibus-qt4
 apt-get -q -y --purge install ibus-unikey ibus-anthy ibus-pinyin ibus-m17n
 apt-get -q -y --purge install im-switch
 #Hotel OS default settings
 #apt-get download hotelos-default-settings
-dpkg -i --force-overwrite meilix-default-settings_1.0_all.deb 
-dpkg -i --force-overwrite systemlock_0.1-1_all.deb
-apt-get install -f
+#dpkg -i --force-overwrite meilix-default-settings_1.0_all.deb 
+#dpkg -i --force-overwrite systemlock_0.1-1_all.deb
+#apt-get install -f
 apt-get -q -y remove dconf-tools
 # Clean up the chroot before
 perl -i -nle 'print unless /^Package: language-(pack|support)/ .. /^$/;' /var/lib/apt/extended_states
 apt-get clean
 rm -rf /tmp/*
 #rm /etc/resolv.conf
-rm meilix-default-settings_1.0_all.deb 
-rm systemlock_0.1-1_all.deb plymouth-meilix-logo_1.0-1_all.deb plymouth-meilix-text_1.0-1_all.deb skype-ubuntu_4.1.0.20-1_i386.deb
-rm meilix-imclient_*_all.deb
+rm -f meilix-default-settings_1.0_all.deb 
+rm -f systemlock_0.1-1_all.deb plymouth-meilix-logo_1.0-1_all.deb plymouth-meilix-text_1.0-1_all.deb skype-ubuntu_4.1.0.20-1_i386.deb
+rm -f meilix-imclient_*_all.deb
 
 # Reverting earlier initctl override. JM 2012-0604
 rm /sbin/initctl
