@@ -10,7 +10,7 @@ script:
 before_deploy:
   # see the image's name
   - echo *.iso
-  - mv *.iso meilix-xenial-i386.iso
+  - mv *.iso /Users/travis/meilix-xenial-i386.iso
 
 notifications:
   slack: fossasia:3pMkQrSogvEMfnu9aJDW2ZYC
